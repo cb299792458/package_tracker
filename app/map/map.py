@@ -52,7 +52,8 @@ def advance_delivery(location, destination):
     if location == destination:
         return DELIVERED
 
-    path = find_shortest_path(location, destination)
+    # path = find_shortest_path(location, destination)
+    path = find_shortest_path_dij(map_dij,location,destination)
     # Safe to say there is a next city if we get here
     return path[1]
 
@@ -102,8 +103,8 @@ def find_shortest_path_dij(map, start, end):
     return path[::-1]
 
 # PHASE TWO Testing
-print("BFS:", find_shortest_path("Seattle", "Washington D.C."))  # BFS: ['Seattle', 'Washington D.C.']
-print("Dij:", find_shortest_path_dij(map_dij, "Seattle", "Washington D.C."))  # Dij: ['Seattle', 'San Francisco', 'Denver', 'Kansas City', 'Chicago', 'New York', 'Washington D.C.']
+# print("BFS:", find_shortest_path("Seattle", "Washington D.C."))  # BFS: ['Seattle', 'Washington D.C.']
+# print("Dij:", find_shortest_path_dij(map_dij, "Seattle", "Washington D.C."))  # Dij: ['Seattle', 'San Francisco', 'Denver', 'Kansas City', 'Chicago', 'New York', 'Washington D.C.']
 
 
 # Simpler example
@@ -136,6 +137,6 @@ simple_map_dij = {
 '''
 
 # PHASE TWO Testing with simpler map
-print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "B"))  # Dij: ['A', 'B']
-print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "E"))  # Dij: ['A', 'F', 'E']
-print("Dij:", find_shortest_path_dij(simple_map_dij, "C", "F"))  # Dij: ['C', 'D', 'E', 'F']
+# print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "B"))  # Dij: ['A', 'B']
+# print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "E"))  # Dij: ['A', 'F', 'E']
+# print("Dij:", find_shortest_path_dij(simple_map_dij, "C", "F"))  # Dij: ['C', 'D', 'E', 'F']
