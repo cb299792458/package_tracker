@@ -19,6 +19,7 @@ def new_package():
     form = ShippingForm()
 
     if form.validate_on_submit():
+        Package.advance_all_locations()
         data = form.data
         new_package = Package(sender=data["sender"],
                               recipient=data["recipient"],

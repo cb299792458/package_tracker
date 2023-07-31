@@ -16,7 +16,7 @@
             <th>Recipient</th>
             <th>Origin</th>
             <th>Destination</th>
-            <th>Express?</th>
+            <th>Location</th>
         </tr>
         {% for package in packages %}
         <tr>
@@ -24,7 +24,7 @@
             <td>{{ package.recipient }}</td>
             <td>{{ package.origin }}</td>
             <td>{{ package.destination }}</td>
-            <td>{{ package.express }}</td>
+            <td>{{ package.location }}</td>
         </tr>
         {% endfor %}
     </table>
