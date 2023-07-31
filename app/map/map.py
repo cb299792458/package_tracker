@@ -82,13 +82,28 @@ map_dij = {
 # map is designated as a parameter instead of referencing map_dij directly from the higher scope
 # This allows for the function to be dynamic. 
 # It is used in the testing examples below on a simpler map.
+from collections import defaultdict
 def find_shortest_path_dij(map, start, end):
-    pass
-    # Your code here
+    dists=defaultdict(lambda: (None,float('inf')))
+    dists[start]=(None,0)
+    # visited=set([start])
+
+    for node in map.keys():
+        connections=map[node]
+        prev_dist=dists[node][1]
+        for (curr_city,curr_dist) in connections:
+            if prev_dist+curr_dist<dists[curr_city][1]:
+                dists[curr_city]=(node,prev_dist+curr_dist)
+
+    # print(dists)
+    path=[end]
+    while dists[path[-1]][0]:
+        path.append(dists[path[-1]][0])
+    return path[::-1]
 
 # PHASE TWO Testing
-# print("BFS:", find_shortest_path("Seattle", "Washington D.C."))  # BFS: ['Seattle', 'Washington D.C.']
-# print("Dij:", find_shortest_path_dij(map_dij, "Seattle", "Washington D.C."))  # Dij: ['Seattle', 'San Francisco', 'Denver', 'Kansas City', 'Chicago', 'New York', 'Washington D.C.']
+print("BFS:", find_shortest_path("Seattle", "Washington D.C."))  # BFS: ['Seattle', 'Washington D.C.']
+print("Dij:", find_shortest_path_dij(map_dij, "Seattle", "Washington D.C."))  # Dij: ['Seattle', 'San Francisco', 'Denver', 'Kansas City', 'Chicago', 'New York', 'Washington D.C.']
 
 
 # Simpler example
@@ -121,6 +136,6 @@ simple_map_dij = {
 '''
 
 # PHASE TWO Testing with simpler map
-# print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "B"))  # Dij: ['A', 'B']
-# print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "E"))  # Dij: ['A', 'F', 'E']
-# print("Dij:", find_shortest_path_dij(simple_map_dij, "C", "F"))  # Dij: ['C', 'D', 'E', 'F']
+print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "B"))  # Dij: ['A', 'B']
+print("Dij:", find_shortest_path_dij(simple_map_dij, "A", "E"))  # Dij: ['A', 'F', 'E']
+print("Dij:", find_shortest_path_dij(simple_map_dij, "C", "F"))  # Dij: ['C', 'D', 'E', 'F']
