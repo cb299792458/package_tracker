@@ -87,7 +87,6 @@ from collections import defaultdict
 def find_shortest_path_dij(map, start, end):
     dists=defaultdict(lambda: (None,float('inf')))
     dists[start]=(None,0)
-    # visited=set([start])
 
     for node in map.keys():
         connections=map[node]
@@ -96,7 +95,6 @@ def find_shortest_path_dij(map, start, end):
             if prev_dist+curr_dist<dists[curr_city][1]:
                 dists[curr_city]=(node,prev_dist+curr_dist)
 
-    # print(dists)
     path=[end]
     while dists[path[-1]][0]:
         path.append(dists[path[-1]][0])
